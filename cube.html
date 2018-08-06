@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src='http://libs.baidu.com/jquery/1.9.1/jquery.js'></script>
+    <style>
+        body{
+            background: #999999;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #my_box{
+            width: 600px;
+            height: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -300px;
+            margin-top: -300px;
+            transition: all .5s ease;
+            transform: scale(0.25);
+        }
+        #my_box:hover{
+            transform: scale(1);
+        }
+        .cube_wrap{
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            user-select: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .cube{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: all .5s ease;
+            animation: spin 10s linear infinite;
+        }
+        #my_box:hover .cube{
+            animation: stop .5s ease;
+        }
+        #my_box.status_1 .cube{
+            transform: translateZ(-150px);
+        }
+        #my_box.status_2 .cube{
+            transform: translateZ(-150px) rotateX(-180deg);
+        }
+        #my_box.status_3 .cube{
+            transform: translateZ(-150px) rotateY(90deg);
+        }
+        #my_box.status_4 .cube{
+            transform: translateZ(-150px) rotateY(-90deg);
+        }
+        #my_box.status_5 .cube{
+            transform: translateZ(-150px) rotateX(-90deg);
+        }
+        #my_box.status_6 .cube{
+            transform: translateZ(-150px) rotateX(90deg);
+        }
+        .cube_skin{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+            opacity: 0.9;
+            border: 1px solid #000;
+        }
+        .cube_skin img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .cube_skin.front{
+            transform: translateZ(150px);
+        }
+        .cube_skin.back{
+            transform: rotateX(180deg) translateZ(150px);
+        }
+        .cube_skin.top{
+            transform: rotateX(90deg) translateZ(150px);
+        }
+        .cube_skin.bottom{
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+        .cube_skin.left{
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+        .cube_skin.right{
+            transform: rotateY(90deg) translateZ(150px);
+        }
+        @keyframes spin {
+            from {
+                transform: rotateX(5deg) rotateY(10deg);
+            }
+            to {
+                transform: rotateX(365deg) rotateY(730deg);
+            }
+        }
+        @keyframes stop {
+            from {
+                transform: rotateX(-5deg) rotateY(-10deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="my_box" class="status_1">
+        <div class="cube_wrap">
+            <div class="cube">
+                <div class="cube_skin front"><img src="1_cub.jpg" alt=""></div>
+                <div class="cube_skin back"><img src="2_cub.jpg" alt=""></div>
+                <div class="cube_skin top"><img src="3_cub.jpg" alt=""></div>
+                <div class="cube_skin bottom"><img src="4_cub.jpg" alt=""></div>
+                <div class="cube_skin left"><img src="5_cub.jpg" alt=""></div>
+                <div class="cube_skin right"><img src="6_cub.jpg" alt=""></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script language="JavaScript">
+
+</script>
+<script>
+    var index = 1;
+    $("#my_box").click(function () {
+        $(this).removeClass("status_"+index);
+        index<6?(index+=1):(index=1);
+        $(this).addClass("status_"+index);
+    });
+
+
+</script>
+</html>
